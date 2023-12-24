@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\Admin\Users\LoginController;
-use App\Http\Controllers\Admin\MainController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\MenuController as ControllersMenuController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -52,12 +54,17 @@ Route::middleware(['auth'])->group(function () {
         Route::prefix('sliders')->group(function() {
             Route::get('add', [SliderController::class, 'create']);
             Route::post('add', [SliderController::class, 'store']);
-            // Route::get('list', [SliderController::class, 'index']);
-            // Route::get('edit/{product}', [SliderController::class, 'show']);
-            // Route::post('edit/{product}', [SliderController::class, 'update']);
-            // Route::delete('destroy', [SliderController::class, 'destroy']);
+            Route::get('list', [SliderController::class, 'index']);
+            Route::get('edit/{slider}', [SliderController::class, 'show']);
+            Route::post('edit/{slider}', [SliderController::class, 'update']);
+            Route::delete('destroy', [SliderController::class, 'destroy']);
         });
 
         Route::post('upload/services', [UploadController::class, 'store']);
     });
 });
+
+Route::get('/', [MainController::class, 'index']);
+Route::post('/services/load-product', [MainController::class, 'loadProduct']);
+
+Route::get('/menu/{id}-{slug}.html', [ControllersMenuController::class, 'index']);

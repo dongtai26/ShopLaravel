@@ -1,7 +1,4 @@
 @extends('admin.main')
-@section('head')
-    <script src="/ckeditor/ckeditor.js"></script>
-@endsection
 @section('content')
     <form action="" method="POST">
         <div class="card-body">

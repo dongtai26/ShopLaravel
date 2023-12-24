@@ -11,6 +11,14 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="/template/admin/dist/css/adminlte.min.css">
 
+<script src="/ckeditor/ckeditor.js"></script>
+
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 @yield('head')
+
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
